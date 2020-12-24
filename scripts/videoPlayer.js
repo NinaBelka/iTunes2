@@ -7,7 +7,8 @@ export const videoPlayerInit = () => {
     videoButtonStop = document.querySelector('.video-button__stop'),
     videoTimePassed = document.querySelector('.video-time__passed'),
     videoProgress = document.querySelector('.video-progress'),
-    videoTimeTotal = document.querySelector('.video-time__total');
+    videoTimeTotal = document.querySelector('.video-time__total'),
+    videoVolume = document.querySelector('.video-volume');
 
   // изменение иконки play/pause
   const toggleIcon = () => {
@@ -36,6 +37,11 @@ export const videoPlayerInit = () => {
     videoPlayer.currentTime = 0;
   };
 
+  const changeValue = () => {
+    const valueVolume = videoVolume.value;
+    videoPlayer.volume = valueVolume / 100;
+  };
+
   videoPlayer.addEventListener('click', togglePlay);
   videoButtonPlay.addEventListener('click', togglePlay);
 
@@ -61,11 +67,16 @@ export const videoPlayerInit = () => {
     videoTimeTotal.textContent = `${addZero(minutesTotal)}:${addZero(secondsTotal)}`;
   });
 
-  videoProgress.addEventListener('change', () => {
+  videoProgress.addEventListener('input', () => {
     const duration = videoPlayer.duration;
     const value = videoProgress.value;
 
     videoPlayer.currentTime = (value * duration) / 100;
   });
+
+  // реализация громкости
+  videoVolume.addEventListener('input', changeValue);
+  
+  changeValue();
 
 };
