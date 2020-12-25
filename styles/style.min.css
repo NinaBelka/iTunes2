@@ -763,4 +763,8 @@ input.video-volume {
   margin-right: 5px;
 }
 
+.video-fullscreen {
+  cursor: pointer;
+}
+
 /*# sourceMappingURL=style.min.css.map */
