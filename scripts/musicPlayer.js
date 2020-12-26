@@ -109,4 +109,9 @@ export const musicPlayerInit = () => {
     audioPlayer.currentTime = progress;
   });
 
+  musicPlayerInit.stop = () => {
+    audioPlayer.pause();
+  };
+
+
 };

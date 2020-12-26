@@ -754,17 +754,19 @@ input[type=range]:focus::-ms-fill-upper {
   color: #F51E38
 }
 
-input.video-volume {
+input.volume {
   max-width: 100px;
   margin-right: 5px;
 }
 
-.video-icon {
+.volume-icon {
   margin-right: 5px;
 }
 
-.video-fullscreen {
+.video-fullscreen,
+.radio-mute {
   cursor: pointer;
+  font-size: 24px;
 }
 
 /*# sourceMappingURL=style.min.css.map */

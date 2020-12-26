@@ -14,6 +14,15 @@ export const videoPlayerInit = () => {
   // раскрытие видео на весь экран
   videoFullscreen.addEventListener('click', () => {
     videoPlayer.requestFullscreen();
+    videoPlayer.controls = true;
+  });
+
+  videoPlayer.addEventListener('fullscreenchange', () => {
+    if (document.fullscreen) {
+      videoPlayer.controls = true;
+    } else {
+      videoPlayer.controls = false;
+    }
   });
 
   // изменение иконки play/pause
@@ -28,7 +37,8 @@ export const videoPlayerInit = () => {
   };
 
   // включение/пауза
-  const togglePlay = () => {
+  const togglePlay = event => {
+    event.preventDefault();
     if (videoPlayer.paused) {
       videoPlayer.play();
     } else {
@@ -40,11 +50,6 @@ export const videoPlayerInit = () => {
   const stopPlay = () => {
     videoPlayer.pause();
     videoPlayer.currentTime = 0;
-  };
-
-  const changeValue = () => {
-    const valueVolume = videoVolume.value;
-    videoPlayer.volume = valueVolume / 100;
   };
 
   videoPlayer.addEventListener('click', togglePlay);
@@ -80,11 +85,21 @@ export const videoPlayerInit = () => {
   });
 
   // реализация громкости
+  const changeValue = () => {
+    const valueVolume = videoVolume.value;
+    videoPlayer.volume = valueVolume / 100;
+  };
+
   videoVolume.addEventListener('input', changeValue);
   videoPlayer.addEventListener('volumechange', () => {
     videoVolume.value = Math.round(videoPlayer.volume * 100);
   });
 
   changeValue();
+
+  videoPlayerInit.stop = () => {
+    videoPlayer.pause();
+    toggleIcon();
+  };
 
 };
