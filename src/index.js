@@ -2,9 +2,9 @@
 
 // импорт модулей
 
-import { radioPlayerInit } from './radioPlayer.js';
-import { musicPlayerInit } from './musicPlayer.js';
-import { videoPlayerInit } from './videoPlayer.js';
+import { radioPlayerInit } from './module/radioPlayer.js';
+import { musicPlayerInit } from './module/musicPlayer.js';
+import { videoPlayerInit } from './module/videoPlayer.js';
 
 // получение данных из DOM
 
